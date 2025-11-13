@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Прашалник - City Explorer</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">City Explorer</div>
+    <nav class="main-nav">
+      <a href="index.html">Почетна</a>
+      <a href="gallery.html">Галерија</a>
+      <a href="blog.html">Блог</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Прашалник за впечатоци</h1>
+    <form id="questionForm" class="form">
+      <label>Име</label>
+      <input id="qName" type="text" placeholder="Ваше име">
+
+      <label>Возраст</label>
+      <select id="qAge">
+        <option value="under18">Под 18</option>
+        <option value="18-30">18-30</option>
+        <option value="31-50">31-50</option>
+        <option value="50+">50+</option>
+      </select>
+
+      <label>Зошто ја посетувате странцата?</label>
+      <select id="qReason">
+        <option value="tourism">Туризам</option>
+        <option value="research">Истражување</option>
+        <option value="local">Локални информации</option>
+        <option value="other">Друго</option>
+      </select>
+
+      <label>Коментари</label>
+      <textarea id="qExtra" placeholder="Додатни информации..."></textarea>
+
+      <button class="btn" type="submit">Прати прашалник</button>
+    </form>
+
+    <section>
+      <h2>Испратени прашалници</h2>
+      <div id="questionResults"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>© 2025 City Explorer</div>
+  </footer>
+
+  <script src="js/questionnaire.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

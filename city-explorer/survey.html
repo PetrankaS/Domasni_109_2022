@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Анкета - City Explorer</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">City Explorer</div>
+    <nav class="main-nav">
+      <a href="index.html">Почетна</a>
+      <a href="gallery.html">Галерија</a>
+      <a href="blog.html">Блог</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Анкета за посетители</h1>
+    <form id="surveyForm" class="form">
+      <label>Како ги оценувате информациите на сајтот?</label>
+      <select id="siteRating">
+        <option>Одлично</option>
+        <option>Добро</option>
+        <option>Просечно</option>
+        <option>Лошо</option>
+      </select>
+
+      <label>Кои делови ви се најинтересни? (маркирај)</label>
+      <div class="checkboxes">
+        <label><input type="checkbox" name="features" value="Галерија" checked> Галерија</label>
+        <label><input type="checkbox" name="features" value="Блог" checked> Блог</label>
+        <label><input type="checkbox" name="features" value="Анкета"> Анкета</label>
+      </div>
+
+      <label>Коментари / сугестии</label>
+      <textarea id="surveyComment" placeholder="Ваши впечатоци..."></textarea>
+
+      <button class="btn" type="submit">Испрати анкета</button>
+    </form>
+
+    <section>
+      <h2>Претходни одговори</h2>
+      <div id="surveyResults"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>© 2025 City Explorer</div>
+  </footer>
+
+  <script src="js/survey.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

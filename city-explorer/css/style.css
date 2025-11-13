@@ -1,0 +1,272 @@
+/* ===== Improved Modern Style ===== */
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background: #55acc4;
+  color: #222;
+}
+
+/* Header */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 22px;
+  background: linear-gradient(90deg, #004aad, #007bff);
+  color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.brand {
+  font-size: 1.5em;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.main-nav a {
+  color: #f8f9fa;
+  margin-left: 16px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.main-nav a:hover {
+  color: #ffe28a;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 360px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(65%);
+}
+
+.hero-text {
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.hero-text h1 {
+  font-size: 2.2em;
+  margin-bottom: 10px;
+}
+
+.hero .btn {
+  display: inline-block;
+  padding: 10px 16px;
+  background: #ffe28a;
+  color: #003366;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.hero .btn:hover {
+  background: #ffd24d;
+}
+
+.hero .btn-outline {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.hero .btn-outline:hover {
+  background: white;
+  color: #004aad;
+}
+
+/* Popular Places */
+.popular {
+  margin-top: 30px;
+}
+
+.popular h2 {
+  text-align: center;
+  color: #004aad;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card h3 {
+  margin: 12px 16px 4px;
+  color: #003366;
+}
+
+.card p {
+  margin: 0 16px 14px;
+  color: #555;
+}
+
+/* Gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.gallery-grid .thumb {
+  background: white;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s;
+}
+
+.gallery-grid .thumb:hover {
+  transform: scale(1.03);
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Image Viewer */
+.viewer {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 50;
+}
+
+.viewer .close {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  background: #fff;
+  border: 0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.viewer img {
+  max-width: 70%;
+  max-height: 70%;
+  border-radius: 8px;
+}
+
+/* Forms */
+.form {
+  background: white;
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-top: 20px;
+}
+
+.form label {
+  display: block;
+  margin-top: 8px;
+  font-weight: 600;
+  color: #003366;
+}
+
+.form input,
+.form select,
+.form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.btn {
+  padding: 10px 14px;
+  background: #007bff;
+  color: white;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 12px;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #005fcc;
+}
+
+/* Footer */
+.site-footer {
+  background: #0f1724;
+  color: #cbd5e1;
+  padding: 16px;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.95em;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .viewer img {
+    max-width: 90%;
+  }
+  .hero-text {
+    left: 14px;
+    right: 14px;
+  }
+  .hero-text h1 {
+    font-size: 1.6em;
+  }
+  .hidden {
+  display: none;
+}
+
+}
+
