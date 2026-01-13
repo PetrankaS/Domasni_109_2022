@@ -1,0 +1,27 @@
+.logo {
+   width: 300px;
+}
+.container {
+   display: flexbox;
+}
+.is-first {
+   color: red;
+}
+.neparen {
+   color: rgb(88, 88, 88);
+}
+.box {
+   display: inline-block;
+   border: 2px solid black;
+   background-color: antiquewhite;
+   padding: 10px;
+   margin: 10px;
+   border-radius: 20px;
+   width: fit-content;
+   font-size: large;
+   text-align: center;
+}
+.box img {
+   width: 500px;
+   border-bottom: 1px solid black;
+}

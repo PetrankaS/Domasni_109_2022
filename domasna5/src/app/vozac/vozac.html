@@ -1,0 +1,22 @@
+<ng-template #noEl>
+   Prazen element
+</ng-template>
+<div *ngIf="motordzija?.name != undefined; else noEl" [ngClass]="klasi()">
+   <ng-template #noImg>
+      No Image
+   </ng-template>
+   <img *ngIf="motordzija?.iconUrl; else noImg"
+   [src]="motordzija?.iconUrl" alt="Icon">
+   <p [style.text-decoration]="stilovi()">
+      {{indeks}}. Name: {{motordzija?.name}}
+   </p>
+   <p>Team: {{motordzija?.team}}</p>
+   <p>Category: <span [ngSwitch]="motordzija?.category">
+      <span *ngSwitchCase="'EXPERT'">EXPERT</span>
+      <span *ngSwitchCase="'LUNATIC'">CRAZY</span>
+      <span *ngSwitchCase="'ASD'">BORING</span>
+      <span *ngSwitchDefault>N/A</span>
+   </span></p>
+   <p>Points: {{motordzija?.points}}</p>
+   <button (click)="funk()">View Driver</button>
+</div>
