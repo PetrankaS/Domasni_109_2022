@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+<meta charset="UTF-8">
+<title>Pet Shop</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  background-image: url('cover1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  font-family: 'Poppins', sans-serif;
+  color:#333;
+}
+
+
+header{
+  background: linear-gradient(135deg,#ffb6c1,#ff69b4);
+  padding:10px 0 20px;
+  text-align:center;
+  position:relative;
+  color:white;
+}
+
+header h1{
+  font-family:'Pacifico', cursive;
+  font-size:3rem;
+}
+
+
+#cart-btn{
+  position:absolute;
+  bottom:15px;
+  right:20px;
+  background:white;
+  color:#ff4081;
+  border:none;
+  border-radius:50px;
+  padding:10px 18px;
+  font-weight:600;
+  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+  cursor:pointer;
+}
+
+
+#cart{
+  display:none;
+  position:absolute;
+  bottom:-10px;
+  right:20px;
+  width:350px;
+  background:white;
+  border-radius:20px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.3);
+  padding:15px;
+  z-index:1000;
+}
+
+#cart h5{
+  text-align:center;
+  color:#aa1c4b;
+  margin-bottom:10px;
+}
+
+#loginForm{
+  max-width:400px;
+  margin:50px auto;
+  padding:25px;
+  background:rgba(255,255,255,0.95);
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+#loginForm input{
+  margin-bottom:15px;
+  border-radius:20px;
+  padding:10px;
+  border:1px solid #ff69b4;
+}
+
+#loginForm button{
+  border-radius:30px;
+  padding:10px 20px;
+  background:#ff69b4;
+  color:white;
+  border:none;
+  font-weight:600;
+}
+
+#loginForm button:hover{
+  background:#ff4081;
+  cursor:pointer;
+}
+
+
+#search{
+  border-radius:30px;
+  padding:12px 20px;
+  border:2px solid #ff69b4;
+  max-width:500px;
+  margin:auto;
+  display:block;
+  margin-top:30px;
+}
+
+
+.product-card{
+  border-radius:25px;
+  overflow:hidden;
+  transition:0.4s;
+  border:none;
+  background:white;
+}
+
+.product-card:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 20px 35px rgba(0,0,0,0.25);
+  cursor:pointer;
+}
+
+.product-card img{
+  height:180px;
+  width:100%;
+  object-fit:cover;
+  border-bottom-left-radius:50%;
+  border-bottom-right-radius:50%;
+}
+
+.card-body{
+  text-align:center;
+  background:#e8f5e9;
+  padding:15px;
+}
+
+
+.add-to-cart{
+  background:#ff69b4;
+  border:none;
+  border-radius:30px;
+  padding:8px 18px;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.add-to-cart:hover{
+  background:#ff4081;
+  color:white;
+}
+
+
+.bg-selected{
+  background:#c8e6c9 !important;
+}
+
+
+.review-card{
+  border-radius:20px;
+  background:linear-gradient(135deg,#fff,#fce4ec);
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  padding:15px;
+  transition:0.3s;
+}
+
+.review-card i{
+  font-size:2rem;
+  color:#ff4081;
+  margin-bottom:10px;
+}
+
+
+#userName, #userReview{
+  border-radius:20px;
+  padding:10px;
+  border:1px solid #ff69b4;
+  box-shadow:1px 1px 5px rgba(0,0,0,0.1);
+}
+
+#addReview{
+  border-radius:30px;
+  padding:8px 20px;
+  margin-top:5px;
+}
+
+
+footer{
+  background:#ff69b4;
+  color:white;
+  padding:25px 0;
+  margin-top:50px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Pet Shop 🐾</h1>
+  <p>Сè за среќни миленици</p>
+  <button id="cart-btn" style="display:none;">🛒 Кошничка</button>
+
+  <div id="cart" style="display:none;">
+    <h5>Вашата кошничка</h5>
+    <div id="cart-items"></div>
+    <button id="checkout" class="btn btn-success w-100 mt-2">Заврши купување</button>
+  </div>
+</header>
+
+
+<div id="loginForm">
+  <h4 class="text-center mb-3">Најавете се</h4>
+  <input type="text" id="loginName" class="form-control" placeholder="Внесете го вашето име">
+  <input type="email" id="loginEmail" class="form-control" placeholder="Внесете е-mail">
+  <button id="loginBtn" class="w-100">Најави се</button>
+</div>
+
+
+<div id="greeting" class="text-center my-4" style="display:none;"></div>
+
+
+<input type="text" id="search" class="form-control" placeholder="Пребарај производ..." style="display:none;">
+
+
+<div class="container my-5" id="products" style="display:none;">
+<div class="row g-4">
+
+<!-- CAT -->
+<div class="col-md-4 product">
+<div class="card product-card">
+<img src="catfood.jpg">
+<div class="card-body">
+<h5 class="title">Храна за мачки</h5>
+<p class="price">750 ден.</p>
+<button class="add-to-cart btn-sm">Додади</button>
+</div></div></div>
+
+<div class="col-md-4 product">
+<div class="card product-card">
+<img src="cattoy.jpg">
+<div class="card-body">
+<h5 class="title">Играчка за мачка</h5>
+<p class="price">250 ден.</p>
+<button class="add-to-cart btn-sm">Додади</button>
+</div></div></div>
+
+<!-- RABBIT -->
+<div class="col-md-4 product">
+<div class="card product-card">
+<img src="rabbitfood.jpg">
+<div class="card-body">
+<h5 class="title">Храна за зајак</h5>
+<p class="price">600 ден.</p>
+<button class="add-to-cart btn-sm">Додади</button>
+</div></div></div>
+
+<!-- DOG -->
+<div class="col-md-4 product">
+<div class="card product-card">
+<img src="dogdood.jpg">
+<div class="card-body">
+<h5 class="title">Храна за кучиња</h5>
+<p class="price">900 ден.</p>
+<button class="add-to-cart btn-sm">Додади</button>
+</div></div></div>
+
+<div class="col-md-4 product">
+<div class="card product-card">
+<img src="dogtoy.jpg">
+<div class="card-body">
+<h5 class="title">Играчка за куче</h5>
+<p class="price">350 ден.</p>
+<button class="add-to-cart btn-sm">Додади</button>
+</div></div></div>
+
+<div class="col-md-4 product">
+<div class="card product-card">
+<img src="bed.jpg">
+<div class="card-body">
+<h5 class="title">Лежалка за милениче</h5>
+<p class="price">1200 ден.</p>
+<button class="add-to-cart btn-sm">Додади</button>
+</div></div></div>
+
+</div>
+</div>
+
+<section class="container my-5" id="reviewsSection" style="display:none;">
+<h3 class="text-center mb-4">Искуства од клиенти</h3>
+<div id="reviews" class="row g-4">
+
+<div class="col-md-4">
+<div class="card p-3 review-card">
+<i class="bi bi-person-circle"></i>
+<p><strong>@petlover</strong></p>
+<p>Одлична продавница и прекрасна услуга!</p>
+</div></div>
+
+</div>
+
+<div class="mt-4">
+<input id="userName" class="form-control w-50 mb-2" placeholder="@username">
+<textarea id="userReview" class="form-control w-50 mb-2" placeholder="Ваше мислење"></textarea>
+<button id="addReview" class="btn btn-success">Додади review</button>
+</div>
+</section>
+
+<footer>
+<p class="text-center">© 2026 Pet Shop 🐾</p>
+</footer>
+
+<script>
+$(function(){
+
+
+$("#loginBtn").click(function(){
+  let name = $("#loginName").val();
+  let email = $("#loginEmail").val();
+  if(name=="" || email==""){ alert("Пополнете ги сите полиња!"); return; }
+
+  $("#loginForm").hide();
+  $("#greeting").html(`<h4>Здраво, ${name}! Изберете производи за вашите миленици 🐾</h4>`).show();
+  $("#products, #search, #cart-btn, #reviewsSection").show();
+});
+
+
+$("#search").on("keyup", function(){
+  let value=$(this).val().toLowerCase();
+  $(".product").filter(function(){
+    $(this).toggle($(this).find(".title").text().toLowerCase().indexOf(value)>-1);
+  });
+});
+
+
+$(".add-to-cart").click(function(){
+  let title=$(this).siblings("h5").text();
+  let price=$(this).siblings("p").text();
+
+  $("#cart-items").append(
+    `<div>${title} - ${price} 
+    <button class="btn btn-danger btn-sm float-end remove">X</button></div>`
+  );
+});
+
+
+$("#cart-items").on("click",".remove",function(){
+  $(this).parent().remove();
+});
+
+$("#cart-btn").click(function(){
+  $("#cart").fadeToggle();
+});
+
+
+$("#checkout").click(function(){
+  $("#cart-items").empty();
+  alert("Купувањето е успешно 🐾");
+});
+
+
+$("#addReview").click(function(){
+  let name=$("#userName").val();
+  let text=$("#userReview").val();
+  if(name==""||text==""){alert("Пополнете ги полињата"); return;}
+
+  $("#reviews").append(
+    `<div class="col-md-4">
+      <div class="card p-3 review-card">
+      <i class="bi bi-person-circle"></i>
+      <p><strong>${name}</strong></p>
+      <p>${text}</p>
+      </div>
+    </div>`
+  );
+
+  $("#userName").val("");
+  $("#userReview").val("");
+});
+
+
+$(".product-card").click(function(){
+  $(this).toggleClass("bg-selected");
+});
+
+});
+</script>
+
+</body>
+</html>
